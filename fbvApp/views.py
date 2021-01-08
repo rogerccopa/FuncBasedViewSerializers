@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 from fbvApp.models import Student
 from fbvApp.serializers import StudentSerializer
 
@@ -34,5 +35,5 @@ def student_detail(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        serializer.delete()
+        student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
